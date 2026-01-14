@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Média UEG</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        window.onload = function() {
+            const botao = document.querySelector('.seubutao');
+            botao.addEventListener('click', function() {
+                const inputNota = document.getElementById('n1');
+                const campoResposta = document.getElementById('resposta');
+                const nota1 = parseFloat(inputNota.value.replace(',', '.'));
+
+                if (isNaN(nota1) || nota1 < 0 || nota1 > 10) {
+                    campoResposta.innerHTML = "❌ Digite uma nota entre 0 e 10!";
+                    campoResposta.style.color = "red";
+                    return;
+                }
+
+                const notaNecessaria = (30 - (nota1 * 2)) / 3;
+                const n2Formatada = notaNecessaria.toFixed(2);
+
+                if (notaNecessaria > 10) {
+                    campoResposta.innerHTML = `Sua resposta: 💀 Desespero! Você precisaria de ${n2Formatada}.`;
+                    campoResposta.style.color = "orange";
+                } else {
+                    campoResposta.innerHTML = `Sua resposta: ✅ Você precisa tirar <b>${n2Formatada}</b> no 2º Bimestre.`;
+                    campoResposta.style.color = "black";
+                }
+            }); 
+        }; 
+    </script>
+</head>
+<body>
+    <header class="header-main">
+        <h1>Calculadora média do desespero!</h1>
+        <p class="title-university">UEG</p>
+    </header>
+
+    <main class="main-content">
+        <div class="form-group">
+            <h2>INFORME SUA NOTA GERAL DO 1° BIMESTRE</h2>
+            <div class="centercenter">
+                <input class="res" type="number" name="n1" id="n1" placeholder="Informe sua nota 0,0 a 10,0">
+            </div>
+            <div class="centercenter">
+                <button class="seubutao">Calcular</button>
+            </div>
+            <div id="resposta" class="text-center">Sua resposta aparecerá aqui:</div>
+        </div>
+
+        <div class="memes">
+            <img src="gato-fazendo-joinha-2-1024x585-removebg-preview.png" alt="fofo" class="gatinho">
+            <img src="meme.jpg" alt="kisifoda">
+            <img src="images.png" alt="passeisera">
+        </div>
+    </main>
+
+    <footer class="footer-main">
+        <div class="footer-content">
+            <p>&copy; 2026 MonkeyCorp - Todos os direitos reservados.</p>
+            <p>Desenvolvido por <span class="highlight">Tio Lu, o presidas</span></p>
+        </div>
+    </footer>
+</body>
+</html>
