@@ -1,68 +1,79 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora Média UEG</title>
-    <link rel="stylesheet" href="style.css">
-    <script>
-        window.onload = function() {
-            const botao = document.querySelector('.seubutao');
-            botao.addEventListener('click', function() {
-                const inputNota = document.getElementById('n1');
-                const campoResposta = document.getElementById('resposta');
-                const nota1 = parseFloat(inputNota.value.replace(',', '.'));
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Calculadora Média UEG & CR</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
 
-                if (isNaN(nota1) || nota1 < 0 || nota1 > 10) {
-                    campoResposta.innerHTML = "❌ Digite uma nota entre 0 e 10!";
-                    campoResposta.style.color = "red";
-                    return;
-                }
+    <body>
+        <header class="header-main">
+            <h1>Calculadora média do desespero!</h1>
+            <p class="title-university">UEG</p>
+        </header>
 
-                const notaNecessaria = (30 - (nota1 * 2)) / 3;
-                const n2Formatada = notaNecessaria.toFixed(2);
-
-                if (notaNecessaria > 10) {
-                    campoResposta.innerHTML = `Sua resposta: 💀 Desespero! Você precisaria de ${n2Formatada}.`;
-                    campoResposta.style.color = "orange";
-                } else {
-                    campoResposta.innerHTML = `Sua resposta: ✅ Você precisa tirar <b>${n2Formatada}</b> no 2º Bimestre.`;
-                    campoResposta.style.color = "black";
-                }
-            }); 
-        }; 
-    </script>
-</head>
-<body>
-    <header class="header-main">
-        <h1>Calculadora média do desespero!</h1>
-        <p class="title-university">UEG</p>
-    </header>
-
-    <main class="main-content">
-        <div class="form-group">
-            <h2>INFORME SUA NOTA GERAL DO 1° BIMESTRE</h2>
-            <div class="centercenter">
-                <input class="res" type="number" name="n1" id="n1" placeholder="Informe sua nota 0,0 a 10,0">
+        <main class="main-content">
+            <div class="form-group">
+                <h2>INFORME SUA NOTA GERAL DO 1° BIMESTRE</h2>
+                <div class="centercenter">
+                    <input class="res" type="number" name="n1" id="n1" placeholder="Informe sua nota 0,0 a 10,0">
+                </div>
+                <div class="centercenter">
+                    <button class="seubutao">Calcular</button>
+                </div>
+                <div id="resposta" class="text-center">Sua resposta aparecerá aqui:</div>
             </div>
-            <div class="centercenter">
-                <button class="seubutao">Calcular</button>
+
+            <div class="memes">
+                <img src="gato-fazendo-joinha-2-1024x585-removebg-preview.png" alt="fofo" class="gatinho">
+                <img src="meme.jpg" alt="kisifoda">
+                <img src="images.png" alt="passeisera">
             </div>
-            <div id="resposta" class="text-center">Sua resposta aparecerá aqui:</div>
-        </div>
 
-        <div class="memes">
-            <img src="gato-fazendo-joinha-2-1024x585-removebg-preview.png" alt="fofo" class="gatinho">
-            <img src="meme.jpg" alt="kisifoda">
-            <img src="images.png" alt="passeisera">
-        </div>
-    </main>
+            <section class="cr-app">
+                <header class="cr-header">
+                    <h2>Calculadora de CR</h2>
+                    <p>Adicione as notas das matérias e suas cargas horárias para calcular o Coeficiente de Rendimento (CR) em tempo real.</p>
+                </header>
 
-    <footer class="footer-main">
-        <div class="footer-content">
-            <p>&copy; 2026 MonkeyCorp - Todos os direitos reservados.</p>
-            <p>Desenvolvido por <span class="highlight">Tio Lu, o presidas</span></p>
-        </div>
-    </footer>
-</body>
+                <div class="cr-panel">
+                    <div class="cr-controls">
+                        <button id="add-subject" class="btn">Adicionar matéria</button>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table id="subjects-table">
+                            <thead>
+                                <tr>
+                                    <th>Disciplina</th>
+                                    <th>Créditos</th>
+                                    <th>Nota</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Linhas serão adicionadas via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="cr-results">
+                        <div class="result-item"><strong>Total de créditos:</strong> <span id="total-credits">0</span></div>
+                        <div class="result-item"><strong>CR:</strong> <span id="cr-value">0.00</span></div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="footer-main">
+            <div class="footer-content">
+                <p>&copy; 2026 MonkeyCorp - Todos os direitos reservados.</p>
+                <p>Desenvolvido por <span class="highlight">Tio Lu, o presidas</span></p>
+            </div>
+        </footer>
+
+        <script src="script.js" defer></script>
+    </body>
 </html>
